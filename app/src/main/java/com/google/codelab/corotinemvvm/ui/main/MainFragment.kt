@@ -1,14 +1,15 @@
 package com.google.codelab.corotinemvvm.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.codelab.corotinemvvm.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.codelab.corotinemvvm.databinding.MainFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
     companion object {
@@ -16,7 +17,7 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var binding: MainFragmentBinding
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,11 +26,4 @@ class MainFragment : Fragment() {
         binding = MainFragmentBinding.inflate(layoutInflater)
         return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
